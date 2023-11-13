@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { getCurrentWeather } from "../../lib/weatherApi";
 import { Backdrop, CircularProgress, Typography } from "@mui/material";
+import { LocationOn } from "@mui/icons-material";
+import LocationDialog from "./LocationDialog";
 
 export default function CurrentLocation({ lat, setLat, lon, setLon }) {
     const [displayPlace, setDisplayPlace] = useState("");
     const [open, setOpen] = useState(true);
+    const [mapOpen, setMapOpen] = useState(false);
 
     useEffect(() => {
         if (lat && lon) {
@@ -31,13 +34,23 @@ export default function CurrentLocation({ lat, setLat, lon, setLon }) {
     while (open) {
         return (
             <Backdrop
-            sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-            open={open}
-          >
-            <CircularProgress color="inherit" />
-          </Backdrop>
+                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                open={open}
+            >
+                <CircularProgress color="inherit" />
+            </Backdrop>
         )
     }
 
-    return <Typography variant="h4" component="h4" color="text.secondary">Your current location: {displayPlace}</Typography>;
+    function openMap(e) {
+        e.preventDefault()
+        setMapOpen(true)
+    }
+
+    return (
+        <>
+            <Typography variant="h4" component="h4" color="text.secondary">Your current location: {displayPlace} <LocationOn fontSize="large" onClick={openMap} /></Typography>
+            <LocationDialog mapOpen={mapOpen} setMapOpen={setMapOpen} lat={lat} lon={lon}/>
+        </>
+    )
 }
