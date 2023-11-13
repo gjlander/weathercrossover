@@ -1,3 +1,4 @@
+import { LowPriority } from "@mui/icons-material";
 import axios from "axios";
 
 export async function getCurrentWeatherMeteo(latitude,longitude){
@@ -15,8 +16,25 @@ export async function getCurrentWeatherMeteo(latitude,longitude){
     }
 };
 
-export async function getCurrentWeatherMeteoByName(locaName)
+export async function getCurrentWeatherMeteoByName(locationName)
 {
+    try {
+        const { data } = await axios.get(
+            `https://geocoding-api.open-meteo.com/v1/search?name=${locationName}&count=10&language=en&format=json`
+        );
+        if(data.results)
+        {
+        const location = data.results[0];
+        const weatherData = getCurrentWeatherMeteo(location.latitude,location.longitude)
+        }
+        else
+        {
+            throw new Error('No Location found');
+        }
+        return weatherData;
+    } catch (error) {
+        console.error(error);
+    }
 
 }
 

@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { getCurrentWeatherMeteo } from "../lib/openMeteoApi";
+import { getCurrentWeatherMeteo,getCurrentWeatherMeteoByName} from "../lib/openMeteoApi";
 
 export default function TestDisplayMeteo() {
     const [weather, setWeather] = useState();
 
     useEffect(() => {
-        getCurrentWeatherMeteo(54.3091,13.0818)
+        getCurrentWeatherMeteoByName("")
+        //getCurrentWeatherMeteo(54.3091,13.0818)
             .then((data) => setWeather(data))
             .catch((error) => console.error(error));
     }, []);
