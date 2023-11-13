@@ -13,6 +13,8 @@ export default function LocationSection({ searchValue, setSearchValue }) {
             direction="row"
             justifyContent="space-around"
             alignItems="center"
+            color="text.secondary"
+            sx={{ bgcolor: 'primary.main', p: 3 }}
         >
             <CurrentLocation
                 lat={lat}

@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { getForecast } from "../lib/weatherApi";
-import Box from "@mui/material/Box";
+// import { useEffect, useState } from "react";
+// import { getForecast } from "../lib/weatherApi";
+// import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -21,6 +21,7 @@ function TestDisplay({ searchValue }) {
     getForecast(searchValue)
       .then((data) => setForecast(data))
       .catch((error) => console.error(error));
+
 
       getCurrentWeatherMeteoByName(searchValue)
       //getCurrentWeatherMeteo(54.3091,13.0818)
@@ -119,27 +120,27 @@ function TestDisplay({ searchValue }) {
             </Card>
           </div>
 
-          <div className="graphContainer">
-            <Card sx={{ maxWidth: 480 }}>
-              <CardActionArea>
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
-                    Graph
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Distinctio sequi dignissimos non, earum maxime nesciunt
-                    animi adipisci eos quisquam eum reiciendis ut quasi dolorum
-                    doloremque, amet veritatis. Temporibus, aut voluptatem!
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-              <CardActions>
-                <Button size="small" color="primary">
-                  View More
-                </Button>
-              </CardActions>
-            </Card>
+
+                    <div className="graphContainer">
+                        <Card sx={{ maxWidth: 480, minWidth: 380 }}>
+                            <CardActionArea>
+                                <CardContent>
+                                    <Typography
+                                        gutterBottom
+                                        variant="h5"
+                                        component="div"
+                                    >
+                                        3 Day Forecast
+                                    </Typography>
+                                    <ForecastList
+                                        forecastDays={
+                                            forecast.forecast.forecastday
+                                        }
+                                    />
+                                </CardContent>
+                            </CardActionArea>
+                        </Card>
+
 
             <Card sx={{ maxWidth: 480 }}>
               <CardActionArea>
