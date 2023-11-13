@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getCurrentWeather } from "../../lib/weatherApi";
-import { Backdrop, CircularProgress, Typography } from "@mui/material";
+import { Backdrop, CircularProgress, Typography, IconButton } from "@mui/material";
 import { LocationOn } from "@mui/icons-material";
 import LocationDialog from "./LocationDialog";
 
@@ -49,7 +49,7 @@ export default function CurrentLocation({ lat, setLat, lon, setLon }) {
 
     return (
         <>
-            <Typography variant="h4" component="h4" color="text.secondary">Your current location: {displayPlace} <LocationOn fontSize="large" onClick={openMap} /></Typography>
+            <Typography variant="h4" component="h4" color="text.secondary">Your current location: {displayPlace} <IconButton aria-label="show location" onClick={openMap}><LocationOn fontSize="large" /></IconButton></Typography>
             <LocationDialog mapOpen={mapOpen} setMapOpen={setMapOpen} lat={lat} lon={lon}/>
         </>
     )

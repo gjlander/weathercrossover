@@ -35,7 +35,7 @@ export default function SearchLocation({ setLat, setLon, setSearchValue }) {
                 label="Search"
                 value={localValue}
                 onChange={handleChange}
-                sx={{ bgcolor: 'secondary', color:"text.primary" }}
+                sx={{ bgcolor: 'secondary', color:"text.primary", px:1 }}
             />
             <Button variant="contained" size="large" type="submit">
                 Search
