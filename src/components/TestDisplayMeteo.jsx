@@ -5,7 +5,7 @@ export default function TestDisplayMeteo() {
     const [weather, setWeather] = useState();
 
     useEffect(() => {
-        getCurrentWeatherMeteoByName("Berlin")
+        getCurrentWeatherMeteoByName("")
         //getCurrentWeatherMeteo(54.3091,13.0818)
             .then((data) => setWeather(data))
             .catch((error) => console.error(error));
