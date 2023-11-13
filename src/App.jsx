@@ -6,8 +6,17 @@ import "./styles.css";
 import LocationSection from "./components/LocationSection/LocationSection";
 import TestDisplay from "./components/TestDisplay";
 import TestDisplayMeteo from "./components/TestDisplayMeteo";
+import Header from "./components/Header/Header";
+import { ThemeProvider } from "@emotion/react";
+import { createTheme } from "@mui/material";
 
 function App() {
+    const darkTheme = createTheme({
+        palette: {
+            mode: 'dark',
+        },
+    });
+
     const [searchValue, setSearchValue] = useState();
     const [forecast, setForecast] = useState();
     const [forecastMeteo, setForecastMeteo] = useState();
