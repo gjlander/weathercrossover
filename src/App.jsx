@@ -103,7 +103,7 @@ function App() {
                 
                 
                 
-                let day = {maxtemp_c:input.daily.temperature_2m_max[i], mintemp_c:input.daily.temperature_2m_max[i], daily_chance_of_rain:input.daily.precipitation_probability_max[i],condition:{icon:"//cdn.weatherapi.com/weather/64x64/day/302.png" }}
+                let day = {maxtemp_c:input.daily.temperature_2m_max[i], mintemp_c:input.daily.temperature_2m_min[i], daily_chance_of_rain:input.daily.precipitation_probability_max[i],condition:{icon:"//cdn.weatherapi.com/weather/64x64/day/302.png" }}
                 newArray.push({day:day})
             }
             console.log("New", newArray)
