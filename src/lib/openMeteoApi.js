@@ -26,7 +26,7 @@ export async function getCurrentWeatherMeteoByName(locationName)
         const location = data.results[0];
         const weatherData = getCurrentWeatherMeteo(location.latitude,location.longitude)
 
-        return data;
+        return weatherData;
     } catch (error) {
         console.error(error);
     }
