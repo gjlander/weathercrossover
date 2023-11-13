@@ -15,7 +15,7 @@ export default function SearchLocation() {
     return (
         <form onSubmit={submitPlace}>
             <label htmlFor="searchPlace">Search</label>
-            <input type="text" id="searchPlace" placeholder="Search for a place" value={placename} onChange={handleChange} />
+            <input type="text" id="searchPlace" placeholder="Type in place" value={placename} onChange={handleChange} />
             <button type="submit">Search</button>
         </form>
     )
