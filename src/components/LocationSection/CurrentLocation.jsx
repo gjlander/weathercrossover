@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { getCurrentWeather } from "../../lib/weatherApi";
 import { Backdrop, CircularProgress, Typography } from "@mui/material";
