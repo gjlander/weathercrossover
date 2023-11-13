@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { getCurrentWeatherMeteo,getCurrentWeatherMeteoByName} from "../lib/openMeteoApi";
 
-export default function TestDisplayMeteo() {
+export default function TestDisplayMeteo({searchValue}) {
     const [weather, setWeather] = useState();
 
     useEffect(() => {
-        getCurrentWeatherMeteoByName("Berlin")
+        getCurrentWeatherMeteoByName(searchValue)
         //getCurrentWeatherMeteo(54.3091,13.0818)
             .then((data) => setWeather(data))
             .catch((error) => console.error(error));
-    }, []);
+    }, [searchValue]);
 
 
 
