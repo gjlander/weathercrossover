@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getCurrentWeatherMeteo,getCurrentWeatherMeteoByName} from "../lib/openMeteoApi";
 
-export default function TestDisplayMeteo({searchValue}) {
+export default function TestDisplayMeteo({searchValue,forecast}) {
     const [weather, setWeather] = useState();
 
     useEffect(() => {
@@ -16,12 +16,12 @@ export default function TestDisplayMeteo({searchValue}) {
 
     function output()
     {
-        if(weather)
+        if(forecast)
         {
             return <div>
-            {weather.current.temperature_2m}
+            {forecast.current.temperature_2m}
             <br></br>
-            {weather.current.time}
+            {forecast.current.time}
             
             </div>
 
@@ -32,10 +32,6 @@ export default function TestDisplayMeteo({searchValue}) {
         }
 
     }
-
-
-    
-
     console.log(weather);
     return (
         <>
