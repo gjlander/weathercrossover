@@ -1,33 +1,44 @@
-import React, {useState} from 'react'
-import { getCurrentWeather } from '../../lib/weatherApi';
+import { useState } from "react";
+import { TextField, Button } from "@mui/material";
+import { getCurrentWeather } from "../../lib/weatherApi";
 
-export default function SearchLocation({setLat, setLon}) {
+export default function SearchLocation({ setLat, setLon, setSearchValue }) {
+    const [localValue, setLocalValue] = useState("");
 
-    const [inputPlace, setInputPlace] = useState("")
-
-    function handleChange (e) {
-        setInputPlace(e.target.value)
+    function handleChange(e) {
+        setLocalValue(e.target.value);
     }
 
-    function submitPlace (e) {
+    function submitPlace(e) {
         e.preventDefault();
-        if (inputPlace) {
-            getCurrentWeather(inputPlace)
-            .then((data) => {
-                setLat(data.location.lat)
-                setLon(data.location.lon)
-            })
-            .catch((error) => console.error(error));
+        setSearchValue(localValue);
+        if (localValue) {
+            getCurrentWeather(localValue)
+                .then((data) => {
+                    setLat(data.location.lat);
+                    setLon(data.location.lon);
+                })
+                .catch((error) => console.error(error));
         } else {
-            alert("Please type in a placename into the input field")
+            alert("Please type in a placename into the input field");
         }
-  }
+        setLocalValue("");
+    }
 
     return (
         <form onSubmit={submitPlace}>
-            <label htmlFor="searchPlace">Search</label>
-            <input type="text" id="searchPlace" placeholder="Type in place" value={inputPlace} onChange={handleChange} />
-            <button type="submit">Search</button>
+            {/* <label htmlFor="searchPlace">Search</label> */}
+            <TextField
+                type="search"
+                id="searchPlace"
+                placeholder="City..."
+                label="Search"
+                value={localValue}
+                onChange={handleChange}
+            />
+            <Button variant="contained" size="large" type="submit">
+                Search
+            </Button>
         </form>
-    )
+    );
 }

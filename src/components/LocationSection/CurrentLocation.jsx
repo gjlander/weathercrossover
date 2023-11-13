@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import { getCurrentWeather } from '../../lib/weatherApi';
+/* eslint-disable react/prop-types */
+import { useEffect, useState } from "react";
+import { getCurrentWeather } from "../../lib/weatherApi";
 
-export default function CurrentLocation({lat, setLat, lon, setLon}) {
-
-    const [displayPlace, setDisplayPlace] = useState("")
+export default function CurrentLocation({ lat, setLat, lon, setLon }) {
+    const [displayPlace, setDisplayPlace] = useState("");
 
     useEffect(() => {
         if (lat && lon) {
             getCurrentWeather(`${lat},${lon}`)
-            .then((data) => setDisplayPlace(data.location.name))
-            .catch((error) => console.error(error));
+                .then((data) => setDisplayPlace(data.location.name))
+                .catch((error) => console.error(error));
         }
     }, [lat, lon]);
 
@@ -20,11 +20,9 @@ export default function CurrentLocation({lat, setLat, lon, setLon}) {
                 setLon(position.coords.longitude);
             });
         } else {
-            console.log("Geo is not available")
+            console.log("Geo is not available");
         }
     }
 
-    return (
-        <div>Your current location: {displayPlace}</div>
-    )
+    return <div>Your current location: {displayPlace}</div>;
 }
