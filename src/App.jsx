@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getForecast } from "./lib/weatherApi";
-import { getCurrentWeatherMeteoByName,getCurrentWeatherMeteo } from "./lib/openMeteoApi";
+import { getForecastMeteoByName ,getForecastMeteo, get3DayForecastMeteo } from "./lib/openMeteoApi";
 // import Weather from "./components/Data/Weather";
 import "./styles.css";
 import LocationSection from "./components/LocationSection/LocationSection";
@@ -11,6 +11,7 @@ function App() {
     const [searchValue, setSearchValue] = useState();
     const [forecast, setForecast] = useState();
     const [forecastMeteo, setForecastMeteo] = useState();
+    const [forecast3DayMeteo, setForecast3DayMeteo] = useState();
     const [lat, setLat] = useState();
     const [lon, setLon] = useState();
     useEffect(() => {
@@ -21,9 +22,13 @@ function App() {
         getForecast(searchValue)
             .then((data) => setForecast(data))
             .catch((error) => console.error(error));
-        getCurrentWeatherMeteoByName(searchValue)
+        getForecastMeteoByName(searchValue)
             //getCurrentWeatherMeteo(54.3091,13.0818)
             .then((data) => setForecastMeteo(data))
+            .catch((error) => console.error(error));
+        getForecastMeteoByName(searchValue,3)
+            //getCurrentWeatherMeteo(54.3091,13.0818)
+            .then((data) => setForecast3DayMeteo(data))
             .catch((error) => console.error(error));
     }, [searchValue]);
 
@@ -32,8 +37,11 @@ function App() {
             getForecast(`${lat},${lon}`)
                 .then((data) => setForecast(data))
                 .catch((error) => console.error(error));
-                getCurrentWeatherMeteo(`${lat},${lon}`)
+            getForecastMeteo(lat,lon)
                 .then((data) => setForecastMeteo(data))
+                .catch((error) => console.error(error));
+            get3DayForecastMeteo(lat,lon,3)
+                .then((data) => setForecast3DayMeteo(data))
                 .catch((error) => console.error(error));
 
 
@@ -58,7 +66,7 @@ function App() {
                 setSearchValue={setSearchValue}
             />
             <TestDisplay searchValue={searchValue} forecast={forecast} />
-            <TestDisplayMeteo searchValue={searchValue} forecast={forecastMeteo} />
+            <TestDisplayMeteo searchValue={searchValue} forecast={forecastMeteo} forecast3Day={forecast3DayMeteo} />
             {/* <Weather /> */}
         </div>
     );

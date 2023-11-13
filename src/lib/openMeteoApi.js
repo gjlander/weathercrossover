@@ -1,8 +1,9 @@
 import { LowPriority } from "@mui/icons-material";
 import axios from "axios";
 
-export async function getCurrentWeatherMeteo(latitude,longitude){
+export async function getForecastMeteo(latitude,longitude){
 
+    console.log("Call1DayInside", latitude, longitude)
     //const baseURL =  "https://geocoding-api.open-meteo.com/v1/search?name=Berlin&count=10&language=en&format=json";
     //const base =  "https://geocoding-api.open-meteo.com/v1/search?name=Berlin&count=10&language=en&format=json";
 
@@ -16,7 +17,7 @@ export async function getCurrentWeatherMeteo(latitude,longitude){
     }
 };
 
-export async function getCurrentWeatherMeteoByName(locationName)
+export async function getForecastMeteoByName(locationName, days)
 {
     try {
         const { data } = await axios.get(
@@ -25,9 +26,19 @@ export async function getCurrentWeatherMeteoByName(locationName)
  
         if(data.results)
         {
-        const location = data.results[0];
-        const weatherData = getCurrentWeatherMeteo(location.latitude,location.longitude)
-        return weatherData;
+            const location = data.results[0];
+            if(days)
+            {   
+                console.log("Call3Day", latitude, longitude,days)
+                const weatherData = get3DayForecastMeteo(location.latitude,location.longitude,days)
+                
+                return weatherData;
+            }
+            else{
+                console.log("Call1Day", latitude, longitude)
+                const weatherData = getForecastMeteo(location.latitude,location.longitude)
+                return weatherData;
+            }
         }
         else
         {
@@ -38,5 +49,20 @@ export async function getCurrentWeatherMeteoByName(locationName)
         console.error(error);
     }
 
+}
+
+export async function get3DayForecastMeteo(latitude, longitude,days)
+{
+
+    console.log("Call3DayInside", latitude, longitude,days)
+    //https://api.open-meteo.com/v1/forecast?latitude=54.3091&longitude=13.0818&daily=weather_code,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,rain_sum,showers_sum,snowfall_sum&forecast_days=3
+    try {
+        const { data } = await axios.get(
+            `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weather_code,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,rain_sum,showers_sum,snowfall_sum&forecast_days=${days}`
+        );
+        return data;
+    } catch (error) {
+        console.error(error);
+    }
 }
 

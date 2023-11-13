@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import { getCurrentWeatherMeteo,getCurrentWeatherMeteoByName} from "../lib/openMeteoApi";
+import { getForecastMeteo,getForecastMeteoByName} from "../lib/openMeteoApi";
 
-export default function TestDisplayMeteo({searchValue,forecast}) {
+export default function TestDisplayMeteo({searchValue,forecast,forecast3Day}) {
     const [weather, setWeather] = useState();
 
-    useEffect(() => {
-        getCurrentWeatherMeteoByName(searchValue)
+    /*useEffect(() => {
+        getForecastMeteoByName(searchValue)
         //getCurrentWeatherMeteo(54.3091,13.0818)
             .then((data) => setWeather(data))
             .catch((error) => console.error(error));
-    }, [searchValue]);
+    }, [searchValue]);*/
 
 
 
@@ -32,7 +32,10 @@ export default function TestDisplayMeteo({searchValue,forecast}) {
         }
 
     }
-    console.log(weather);
+
+
+    console.log("3Day:", forecast3Day)
+    console.log("Forecast:", forecast);
     return (
         <>
             <div>
