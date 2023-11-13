@@ -50,6 +50,7 @@ function App() {
     }
     return (
         <ThemeProvider theme={darkTheme}>
+            <Header />
             <div className="min-h-screen p-8">
                 <LocationSection
                     searchValue={searchValue}
