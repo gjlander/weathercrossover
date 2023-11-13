@@ -7,11 +7,17 @@ import { CardActionArea } from "@mui/material";
 import ForecastList from "./ForecastList";
 
 function TestDisplay({ forecast, weather,weather3day }) {
+
+  if(forecast)
+  {
+    console.log("Forecast:", forecast.forecast.forecastday)
+  }
+
     //all useEffect logic moved to App.jsx
 
     return (
         <>
-            {forecast && weather && (
+            {forecast && weather && weather3day && (
                 <div>
                     <div className="cardContainer">
                         <Card sx={{ minWidth: 380 }}>
@@ -114,8 +120,7 @@ function TestDisplay({ forecast, weather,weather3day }) {
                                 </CardContent>
                             </CardActionArea>
                         </Card>
-
-                        <Card sx={{ maxWidth: 480 }}>
+                        <Card sx={{ maxWidth: 480, minWidth: 380 }}>
                             <CardActionArea>
                                 <CardContent>
                                     <Typography
@@ -123,27 +128,15 @@ function TestDisplay({ forecast, weather,weather3day }) {
                                         variant="h5"
                                         component="div"
                                     >
-                                        Graph
+                                        3 Day Forecast
                                     </Typography>
-                                    <Typography
-                                        variant="body2"
-                                        color="text.secondary"
-                                    >
-                                        Lorem, ipsum dolor sit amet consectetur
-                                        adipisicing elit. Distinctio sequi
-                                        dignissimos non, earum maxime nesciunt
-                                        animi adipisci eos quisquam eum
-                                        reiciendis ut quasi dolorum doloremque,
-                                        amet veritatis. Temporibus, aut
-                                        voluptatem!
-                                    </Typography>
+                                    <ForecastList
+                                        forecastDays={
+                                            weather3day
+                                        }
+                                    />
                                 </CardContent>
                             </CardActionArea>
-                            <CardActions>
-                                <Button size="small" color="primary">
-                                    View More
-                                </Button>
-                            </CardActions>
                         </Card>
                     </div>
                 </div>

@@ -38,14 +38,14 @@ export async function getCurrentWeatherMeteoByName(locationName,days) {
             const location = data.results[0];
             if(days)
             {   
-                console.log("Call3Day", latitude, longitude,days)
+                //console.log("Call3Day", latitude, longitude,days)
                 const weatherData = get3DayForecastMeteo(location.latitude,location.longitude,days)
                 
                 return weatherData;
             }
             else{
-                console.log("Call1Day", latitude, longitude)
-                const weatherData = getForecastMeteo(location.latitude,location.longitude)
+                //console.log("Call1Day", latitude, longitude)
+                const weatherData = getCurrentWeatherMeteo(location.latitude,location.longitude)
                 return weatherData;
             }
         }

@@ -38,7 +38,7 @@ function App() {
             .catch((error) => console.error(error));
             getCurrentWeatherMeteoByName(searchValue,3)
             //getCurrentWeatherMeteo(54.3091,13.0818)
-            .then((data) => setWeather3Day(data))
+            .then((data) => setWeather3Day(convert3Day(data)))
             .catch((error) => console.error(error));
     }, [searchValue]);
 
@@ -53,7 +53,11 @@ function App() {
                 .catch((error) => console.error(error));
             get3DayForecastMeteo(lat, lon,3)
                 //getCurrentWeatherMeteo(54.3091,13.0818)
-                .then((data) => setWeather3Day(data))
+                .then((data) => 
+                {
+                    //convert3Day(data);
+                    setWeather3Day(convert3Day(data))}
+                    )
                 .catch((error) => console.error(error));
         }
     }, [lat, lon]);
@@ -87,6 +91,27 @@ function App() {
             </div>
         </ThemeProvider>
     );
+
+        function convert3Day(input)
+        {
+
+            let newArray = [];
+            console.log("Array", input.daily)
+            for (let i=0; i <3; i++)
+            {
+                console.log("Array", i, input.daily.temperature_2m_max[i])
+                
+                
+                
+                let day = {maxtemp_c:input.daily.temperature_2m_max[i], mintemp_c:input.daily.temperature_2m_max[i], daily_chance_of_rain:input.daily.precipitation_probability_max[i],condition:{icon:"//cdn.weatherapi.com/weather/64x64/day/302.png" }}
+                newArray.push({day:day})
+            }
+            console.log("New", newArray)
+            return newArray
+
+        }
+
+    
 }
 
 export default App;
