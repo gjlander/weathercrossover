@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import ForecastList from "./ForecastList";
 
-function TestDisplay({ forecast, weather }) {
+function TestDisplay({ forecast, weather,weather3day }) {
     //all useEffect logic moved to App.jsx
 
     return (
