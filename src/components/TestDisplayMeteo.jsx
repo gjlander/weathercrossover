@@ -35,7 +35,7 @@ export default function TestDisplayMeteo({searchValue,forecast,forecast3Day}) {
 
 
     console.log("3Day:", forecast3Day)
-    console.log("Forecast:", forecast);
+    console.log("1DayForecast:", forecast);
     return (
         <>
             <div>
