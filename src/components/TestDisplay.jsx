@@ -115,7 +115,7 @@ function TestDisplay({ forecast, weather }) {
                             </CardActionArea>
                         </Card>
 
-                        <Card sx={{ maxWidth: 480 }}>
+                        <Card sx={{ maxWidth: 480, minWidth: 380 }}>
                             <CardActionArea>
                                 <CardContent>
                                     <Typography
@@ -123,27 +123,15 @@ function TestDisplay({ forecast, weather }) {
                                         variant="h5"
                                         component="div"
                                     >
-                                        Graph
+                                        3 Day Forecast
                                     </Typography>
-                                    <Typography
-                                        variant="body2"
-                                        color="text.secondary"
-                                    >
-                                        Lorem, ipsum dolor sit amet consectetur
-                                        adipisicing elit. Distinctio sequi
-                                        dignissimos non, earum maxime nesciunt
-                                        animi adipisci eos quisquam eum
-                                        reiciendis ut quasi dolorum doloremque,
-                                        amet veritatis. Temporibus, aut
-                                        voluptatem!
-                                    </Typography>
+                                    <ForecastList
+                                        forecastDays={
+                                            forecast.forecast.forecastday
+                                        }
+                                    />
                                 </CardContent>
                             </CardActionArea>
-                            <CardActions>
-                                <Button size="small" color="primary">
-                                    View More
-                                </Button>
-                            </CardActions>
                         </Card>
                     </div>
                 </div>
