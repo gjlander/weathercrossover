@@ -1,4 +1,4 @@
-import LocationSection from "../components/LocationSection/LocationSection";
+import LocationSection from "./components/LocationSection/LocationSection";
 import TestDisplay from "./components/TestDisplay";
 
 function App() {
