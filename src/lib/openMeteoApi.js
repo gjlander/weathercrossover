@@ -35,3 +35,19 @@ export async function getCurrentWeatherMeteoByName(locationName) {
         console.error(error);
     }
 }
+
+
+
+export async function get3DayForecastMeteo(latitude, longitude,days)
+{
+
+    //console.log("Call3DayInside", latitude, longitude,days)
+    try {
+        const { data } = await axios.get(
+            `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weather_code,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,rain_sum,showers_sum,snowfall_sum,precipitation_probability_max&forecast_days=${days}`
+        );
+        return data;
+    } catch (error) {
+        console.error(error);
+    }
+}
