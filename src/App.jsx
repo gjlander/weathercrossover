@@ -36,7 +36,7 @@ function App() {
             //getCurrentWeatherMeteo(54.3091,13.0818)
             .then((data) => setWeather(data))
             .catch((error) => console.error(error));
-            getCurrentWeatherMeteoByName(searchValue,3)
+        getCurrentWeatherMeteoByName(searchValue, 3)
             //getCurrentWeatherMeteo(54.3091,13.0818)
             .then((data) => setWeather3Day(data))
             .catch((error) => console.error(error));
@@ -51,7 +51,7 @@ function App() {
             getCurrentWeatherMeteo(lat, lon)
                 .then((data) => setWeather(data))
                 .catch((error) => console.error(error));
-            get3DayForecastMeteo(lat, lon,3)
+            get3DayForecastMeteo(lat, lon, 3)
                 //getCurrentWeatherMeteo(54.3091,13.0818)
                 .then((data) => setWeather3Day(data))
                 .catch((error) => console.error(error));

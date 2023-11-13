@@ -15,7 +15,7 @@ export async function getCurrentWeatherMeteo(latitude, longitude) {
     }
 }
 
-export async function getCurrentWeatherMeteoByName(locationName,days) {
+export async function getCurrentWeatherMeteoByName(locationName, days) {
     try {
         const { data } = await axios.get(
             `https://geocoding-api.open-meteo.com/v1/search?name=${locationName}&count=10&language=en&format=json`
@@ -32,43 +32,34 @@ export async function getCurrentWeatherMeteoByName(locationName,days) {
             throw new Error("No Location found");
         }*/
 
-
-        if(data.results)
-        {
+        if (data.results) {
             const location = data.results[0];
-            if(days)
-            {   
-                console.log("Call3Day", latitude, longitude,days)
-                const weatherData = get3DayForecastMeteo(location.latitude,location.longitude,days)
-                
+            if (days) {
+                // console.log("Call3Day", latitude, longitude,days)
+                const weatherData = get3DayForecastMeteo(
+                    location.latitude,
+                    location.longitude,
+                    days
+                );
+
+                return weatherData;
+            } else {
+                // console.log("Call1Day", latitude, longitude)
+                const weatherData = getCurrentWeatherMeteo(
+                    location.latitude,
+                    location.longitude
+                );
                 return weatherData;
             }
-            else{
-                console.log("Call1Day", latitude, longitude)
-                const weatherData = getForecastMeteo(location.latitude,location.longitude)
-                return weatherData;
-            }
+        } else {
+            throw new Error("No Location found");
         }
-        else
-        {
-            throw new Error('No Location found');
-        }
-
-
-
-
-
-
     } catch (error) {
         console.error(error);
     }
 }
 
-
-
-export async function get3DayForecastMeteo(latitude, longitude,days)
-{
-
+export async function get3DayForecastMeteo(latitude, longitude, days) {
     //console.log("Call3DayInside", latitude, longitude,days)
     try {
         const { data } = await axios.get(
