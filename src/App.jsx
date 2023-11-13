@@ -46,7 +46,7 @@ function App() {
                 setSearchValue={setSearchValue}
             />
             <TestDisplay searchValue={searchValue} forecast={forecast} />
-            <TestDisplayMeteo searchValue={searchValue} />
+            {/* <TestDisplayMeteo searchValue={searchValue} /> */}
             {/* <Weather /> */}
         </div>
     );
