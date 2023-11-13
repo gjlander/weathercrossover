@@ -1,7 +1,10 @@
+import Weather from "./components/Weather";
+import "./styles.css";
+
 function App() {
     return (
         <>
-            <div>Sanity check!</div>
+            <Weather />
         </>
     );
 }
