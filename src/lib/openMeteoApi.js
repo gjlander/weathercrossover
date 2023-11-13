@@ -22,16 +22,18 @@ export async function getCurrentWeatherMeteoByName(locationName)
         const { data } = await axios.get(
             `https://geocoding-api.open-meteo.com/v1/search?name=${locationName}&count=10&language=en&format=json`
         );
+ 
         if(data.results)
         {
         const location = data.results[0];
         const weatherData = getCurrentWeatherMeteo(location.latitude,location.longitude)
+        return weatherData;
         }
         else
         {
             throw new Error('No Location found');
         }
-        return weatherData;
+
     } catch (error) {
         console.error(error);
     }
