@@ -1,8 +1,7 @@
-import { LowPriority } from "@mui/icons-material";
+// import { LowPriority } from "@mui/icons-material";
 import axios from "axios";
 
-export async function getCurrentWeatherMeteo(latitude,longitude){
-
+export async function getCurrentWeatherMeteo(latitude, longitude) {
     //const baseURL =  "https://geocoding-api.open-meteo.com/v1/search?name=Berlin&count=10&language=en&format=json";
     //const base =  "https://geocoding-api.open-meteo.com/v1/search?name=Berlin&count=10&language=en&format=json";
 
@@ -14,29 +13,25 @@ export async function getCurrentWeatherMeteo(latitude,longitude){
     } catch (error) {
         console.error(error);
     }
-};
+}
 
-export async function getCurrentWeatherMeteoByName(locationName)
-{
+export async function getCurrentWeatherMeteoByName(locationName) {
     try {
         const { data } = await axios.get(
             `https://geocoding-api.open-meteo.com/v1/search?name=${locationName}&count=10&language=en&format=json`
         );
- 
-        if(data.results)
-        {
-        const location = data.results[0];
-        const weatherData = getCurrentWeatherMeteo(location.latitude,location.longitude)
-        return weatherData;
-        }
-        else
-        {
-            throw new Error('No Location found');
-        }
 
+        if (data.results) {
+            const location = data.results[0];
+            const weatherData = getCurrentWeatherMeteo(
+                location.latitude,
+                location.longitude
+            );
+            return weatherData;
+        } else {
+            throw new Error("No Location found");
+        }
     } catch (error) {
         console.error(error);
     }
-
 }
-
