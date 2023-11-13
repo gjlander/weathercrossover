@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getForecast } from "./lib/weatherApi";
 import {
+    get3DayForecastMeteo,
     getCurrentWeatherMeteo,
     getCurrentWeatherMeteoByName,
 } from "./lib/openMeteoApi";
@@ -23,6 +24,7 @@ function App() {
     const [searchValue, setSearchValue] = useState();
     const [forecast, setForecast] = useState();
     const [weather, setWeather] = useState();
+    const [weather3day, setWeather3Day] = useState();
     const [lat, setLat] = useState();
     const [lon, setLon] = useState();
     useEffect(() => {
@@ -34,6 +36,10 @@ function App() {
             //getCurrentWeatherMeteo(54.3091,13.0818)
             .then((data) => setWeather(data))
             .catch((error) => console.error(error));
+            getCurrentWeatherMeteoByName(searchValue,3)
+            //getCurrentWeatherMeteo(54.3091,13.0818)
+            .then((data) => setWeather3Day(data))
+            .catch((error) => console.error(error));
     }, [searchValue]);
 
     useEffect(() => {
@@ -44,6 +50,10 @@ function App() {
                 .catch((error) => console.error(error));
             getCurrentWeatherMeteo(lat, lon)
                 .then((data) => setWeather(data))
+                .catch((error) => console.error(error));
+            get3DayForecastMeteo(lat, lon,3)
+                //getCurrentWeatherMeteo(54.3091,13.0818)
+                .then((data) => setWeather3Day(data))
                 .catch((error) => console.error(error));
         }
     }, [lat, lon]);
@@ -70,6 +80,7 @@ function App() {
                     searchValue={searchValue}
                     forecast={forecast}
                     weather={weather}
+                    weather3day={weather3day}
                 />
                 {/* <TestDisplayMeteo searchValue={searchValue} /> */}
                 {/* <Weather /> */}
