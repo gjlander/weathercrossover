@@ -26,7 +26,7 @@ export default function SearchLocation({ setLat, setLon, setSearchValue }) {
     }
 
     return (
-        <form onSubmit={submitPlace}>
+        <form className="flex" onSubmit={submitPlace}>
             {/* <label htmlFor="searchPlace">Search</label> */}
             <TextField
                 type="search"
