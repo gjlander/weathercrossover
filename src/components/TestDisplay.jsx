@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
-import { getForecast } from "../lib/weatherApi";
-import Box from "@mui/material/Box";
+// import { useEffect, useState } from "react";
+// import { getForecast } from "../lib/weatherApi";
+// import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { CardActionArea, CardMedia } from "@mui/material";
+import { CardActionArea } from "@mui/material";
+import ForecastList from "./ForecastList";
 
-function TestDisplay({ searchValue, forecast }) {
+function TestDisplay({ forecast }) {
     // const [currentWeather, setCurrentWeather] = useState();
     //   const [forecast, setForecast] = useState();
     //   useEffect(() => {
@@ -22,14 +23,14 @@ function TestDisplay({ searchValue, forecast }) {
     //   // console.log(currentWeather);
     console.log(forecast);
 
-    const bull = (
-        <Box
-            component="span"
-            sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
-        >
-            •
-        </Box>
-    );
+    // const bull = (
+    //     <Box
+    //         component="span"
+    //         sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
+    //     >
+    //         •
+    //     </Box>
+    // );
 
     return (
         <>
@@ -123,7 +124,7 @@ function TestDisplay({ searchValue, forecast }) {
                     </div>
 
                     <div className="graphContainer">
-                        <Card sx={{ maxWidth: 480 }}>
+                        <Card sx={{ maxWidth: 480, minWidth: 380 }}>
                             <CardActionArea>
                                 <CardContent>
                                     <Typography
@@ -131,27 +132,15 @@ function TestDisplay({ searchValue, forecast }) {
                                         variant="h5"
                                         component="div"
                                     >
-                                        Graph
+                                        3 Day Forecast
                                     </Typography>
-                                    <Typography
-                                        variant="body2"
-                                        color="text.secondary"
-                                    >
-                                        Lorem, ipsum dolor sit amet consectetur
-                                        adipisicing elit. Distinctio sequi
-                                        dignissimos non, earum maxime nesciunt
-                                        animi adipisci eos quisquam eum
-                                        reiciendis ut quasi dolorum doloremque,
-                                        amet veritatis. Temporibus, aut
-                                        voluptatem!
-                                    </Typography>
+                                    <ForecastList
+                                        forecastDays={
+                                            forecast.forecast.forecastday
+                                        }
+                                    />
                                 </CardContent>
                             </CardActionArea>
-                            <CardActions>
-                                <Button size="small" color="primary">
-                                    View More
-                                </Button>
-                            </CardActions>
                         </Card>
 
                         <Card sx={{ maxWidth: 480 }}>
