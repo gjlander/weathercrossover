@@ -9,9 +9,10 @@ import TestDisplayMeteo from "./components/TestDisplayMeteo";
 function App() {
     const [searchValue, setSearchValue] = useState();
     const [forecast, setForecast] = useState();
-    const [lat, setLat] = useState("");
-    const [lon, setLon] = useState("");
+    const [lat, setLat] = useState();
+    const [lon, setLon] = useState();
     useEffect(() => {
+        if (!searchValue) return;
         // getCurrentWeather("Hamburg")
         //     .then((data) => setCurrentWeather(data))
         //     .catch((error) => console.error(error));
